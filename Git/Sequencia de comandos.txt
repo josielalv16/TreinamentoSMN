@@ -1,0 +1,76 @@
+git clone <URL>		-- Clonar um repositorio
+git status		-- Mostra o status do repositorio
+git add <--all, ., nome do arquivo>	-- prepara para commit
+git commit -m 'mensagem'	-- faz um commit com as alterações
+git fetch	-- busca as alterações na origin
+git pull	-- atualiza o repositorio local
+git push	-- envia as alterações locais para a origin
+
+
+git log --oneline	-- mostra o log de commits por linha
+git log --oneline --decorate --all --graph	-- mostra log de commits, merge, "grafico"
+
+git branch nome 	-- cria novo branch
+git checkout nome	-- troca para outro branch
+git merge nome		-- faz merge no branch que vc esta com o branch 'nome'
+git branch -d nome	-- apaga o branch localmente
+git push origin nome --delete 		-- apaga o branch remoto
+
+stash é uma arena, onde é possivel armazenar codigo, sem a necessidade de realizar
+um commit, permitindo mudar de branch ou realizar outras operações de forma organizada
+
+git stash save nomeIdentificador	-- salva os arquivos
+git stash list		-- traz a lista de stash
+git stash apply stash@{0} 		-- traz os arquivos do stash (stash@{0} é o identificador)
+git stash drop stash@{0}		-- apaga a stash
+git stash pop		-- traz o primeiro indentificador da lista stash e apaga ele da lista
+
+
+Referencias relativas
+git branch -f master HEAD~3		-- move o branch master para o commit acima do HEAD 3 vezes
+git checkout master^			-- move o branch master para um commit acima
+
+Reverter mudanças
+git reset Nome~1		-- mover 1 ramo para trás como se o commit nunca tivesse existido, somente local
+git revert Nome			-- Reverte o ultimo commit, criando um novo commit q faz o revert para poder ser compartilhado remotamente
+
+
+Movendo trabalho por ai
+git cherry-pick <commit1> <commit2> <...> 	-- copia os commit(saber os hashes) especificos de um branch para o outro
+
+Rebase interativo -- reoordena os commits
+git rebase -i HEAD~4		-- faz o mesmo que o cherry-pick mostrando os commit acima do branch
+
+
+git commit --amend	--para fazer uma pequena modificação
+
+Tags
+git tag v1 C1
+
+Git Describe
+git describe <ref>
+Onde <ref> é qualquer coisa que o git possa resolver como uma referência a um commit. Se você não especificar o ref, o Git usa 
+simplesmente o commit atual (HEAD).
+
+A saída do comando é mais ou menos assim:
+<tag>_<numCommits>_g<hash>
+
+Onde tag é a tag ancestral mais próxima no histórico, numCommits é o número de commits de distância da tag, e 
+<hash> é o hash do commit sendo descrito.
+
+git checkout HEAD^ passa para o primeiro pai
+git checkout HEAD^2 passa para o segundo pai
+git checkout HEAD~^2~2 passa para o commit acima, passa para o segundo pai, passa para 2 commits acima
+
+
+Configurar remote tracking
+#Forma 1
+git checkout -b realmenteNaoSouOMaster o/master		-- Cria um novo ramo chamado realmenteNaoSouOMaster e o configura para seguir o o/master
+#Forma 2
+git branch -u o/master realmenteNaoSouOMaster 
+
+git fakeTeamwork
+		 nome do ramo, numero de commits
+git fakeTeamwork foo 3
+
+git pull --rebase; git push

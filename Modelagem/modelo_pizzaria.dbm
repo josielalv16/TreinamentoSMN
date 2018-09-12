@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.0" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="new_database">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="administrativo" rect-visible="true" fill-color="#ff5500">
+	<role name="postgres"/>
+	<comment><![CDATA[Esquema administrativo da pizzaria]]></comment>
+</schema>
+
+<table name="pizzaria">
+	<schema name="administrativo"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabela de pizzaria do sistema]]></comment>
+	<position x="60" y="63"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+		<comment><![CDATA[Chave da tabela]]></comment>
+	</column>
+	<column name="nomefantasia" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[Nome Fantasia da pizzaria]]></comment>
+	</column>
+	<column name="razaosocial" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[Razão Social da pizzaria]]></comment>
+	</column>
+	<column name="endereco" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[Endereço da pizzaria]]></comment>
+	</column>
+	<column name="telefone" not-null="true">
+		<type name="varchar" length="15"/>
+		<comment><![CDATA[Telefone da pizzaria]]></comment>
+	</column>
+	<constraint name="pizzaria_pk" type="pk-constr" table="administrativo.pizzaria">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<schema name="cozinha" rect-visible="true" fill-color="#ff0000">
+	<role name="postgres"/>
+	<comment><![CDATA[esquema da cozinha]]></comment>
+</schema>
+
+<table name="ingrediente">
+	<schema name="cozinha"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabela de ingredientes da pizza]]></comment>
+	<position x="420" y="280"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+		<comment><![CDATA[Chave da tabela]]></comment>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[Nome do ingrediente]]></comment>
+	</column>
+	<constraint name="ingrediente_pk" type="pk-constr" table="cozinha.ingrediente">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="pizza">
+	<schema name="cozinha"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabela de pizzas do sistema]]></comment>
+	<position x="860" y="280"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+		<comment><![CDATA[Chave da tabela]]></comment>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[Nome da pizza]]></comment>
+	</column>
+	<column name="preco" not-null="true">
+		<type name="numeric" length="10" precision="2"/>
+		<comment><![CDATA[Preço da pizza]]></comment>
+	</column>
+	<constraint name="pizza_pk" type="pk-constr" table="cozinha.pizza">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="pizzaingrediente">
+	<schema name="cozinha"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabela de ingredientes da pizza]]></comment>
+	<position x="600" y="60"/>
+	<column name="idpizza" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Chave por pizza]]></comment>
+	</column>
+	<column name="idingrediente" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Chave por ingrediente]]></comment>
+	</column>
+	<constraint name="pk_pizzaingrediente_pizza_ingrediente" type="pk-constr" table="cozinha.pizzaingrediente">
+		<columns names="idpizza,idingrediente" ref-type="src-columns"/>
+		<comment><![CDATA[Chave composta da tabela]]></comment>
+	</constraint>
+</table>
+
+<constraint name="fk_pizzaingrediente_pizza" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="cozinha.pizza" table="cozinha.pizzaingrediente">
+	<columns names="idpizza" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+		<comment><![CDATA[Chave estrangeira por pizza]]></comment>
+</constraint>
+
+<constraint name="fk_pizzaingrediente_ingrediente" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="cozinha.ingrediente" table="cozinha.pizzaingrediente">
+	<columns names="idingrediente" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+		<comment><![CDATA[Chave estrangeira por ingrediente]]></comment>
+</constraint>
+
+<relationship name="rel_pizzaingrediente_pizza" type="relfk"
+	 src-table="cozinha.pizzaingrediente"
+	 dst-table="cozinha.pizza"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_pizzaingrediente_ingrediente" type="relfk"
+	 src-table="cozinha.pizzaingrediente"
+	 dst-table="cozinha.ingrediente"
+	 src-required="false" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="0.09" y="-0.2"/>
+	</label>
+</relationship>
+
+</dbmodel>

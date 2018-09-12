@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.0" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="new_database">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="controle_condominio" rect-visible="true" fill-color="#e1e1e1">
+	<role name="postgres"/>
+</schema>
+
+<table name="predio">
+	<schema name="controle_condominio"/>
+	<role name="postgres"/>
+	<position x="80" y="43"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="rua" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="bairro" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="numero" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<column name="cep" not-null="true">
+		<type name="bigint" length="0"/>
+	</column>
+	<constraint name="predio_pk" type="pk-constr" table="controle_condominio.predio">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="andar">
+	<schema name="controle_condominio"/>
+	<role name="postgres"/>
+	<position x="400" y="51"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="idPredio" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="numero" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<constraint name="andar_pk" type="pk-constr" table="controle_condominio.andar">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="apto">
+	<schema name="controle_condominio"/>
+	<role name="postgres"/>
+	<position x="520" y="300"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="idAndar" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="numero" not-null="true">
+		<type name="varchar" length="10"/>
+	</column>
+	<column name="alugado" not-null="true">
+		<type name="bool" length="0"/>
+	</column>
+	<column name="valor" not-null="true">
+		<type name="decimal" length="10" precision="2"/>
+	</column>
+	<constraint name="aptos_pk" type="pk-constr" table="controle_condominio.apto">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="morador">
+	<schema name="controle_condominio"/>
+	<role name="postgres"/>
+	<position x="860" y="300"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="idade">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="cpf">
+		<type name="bigint" length="20"/>
+	</column>
+	<constraint name="morador_pk" type="pk-constr" table="controle_condominio.morador">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="telefones">
+	<schema name="controle_condominio"/>
+	<role name="postgres"/>
+	<position x="820" y="500"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="idMorador" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="telefone" not-null="true">
+		<type name="bigint" length="15"/>
+	</column>
+	<constraint name="telefones_pk" type="pk-constr" table="controle_condominio.telefones">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="aptomorador">
+	<schema name="controle_condominio"/>
+	<role name="postgres"/>
+	<position x="780" y="80"/>
+	<column name="idMorador" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="idApto" not-null="true">
+		<type name="integer" length="0"/>
+	</column>
+</table>
+
+<constraint name="fk_andar_predio" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="controle_condominio.predio" table="controle_condominio.andar">
+	<columns names="idPredio" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_aptos_andar" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="controle_condominio.andar" table="controle_condominio.apto">
+	<columns names="idAndar" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_telefones_morador" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="controle_condominio.morador" table="controle_condominio.telefones">
+	<columns names="idMorador" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_aptomorador_morador" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="controle_condominio.morador" table="controle_condominio.aptomorador">
+	<columns names="idMorador" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_aptomorador_apto" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="controle_condominio.apto" table="controle_condominio.aptomorador">
+	<columns names="idApto" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_andar_predio" type="relfk"
+	 src-table="controle_condominio.andar"
+	 dst-table="controle_condominio.predio"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_aptos_andar" type="relfk"
+	 src-table="controle_condominio.apto"
+	 dst-table="controle_condominio.andar"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_telefones_morador" type="relfk"
+	 src-table="controle_condominio.telefones"
+	 dst-table="controle_condominio.morador"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_aptomorador_morador" type="relfk"
+	 src-table="controle_condominio.aptomorador"
+	 dst-table="controle_condominio.morador"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="rel_aptomorador_aptos" type="relfk"
+	 src-table="controle_condominio.aptomorador"
+	 dst-table="controle_condominio.apto"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+</dbmodel>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.0" last-position="0,90" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="new_database">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="administrativo" rect-visible="true" fill-color="#aa00ff">
+	<role name="postgres"/>
+	<comment><![CDATA[Eschema adminisatitrativo loja carro]]></comment>
+</schema>
+
+<table name="loja">
+	<schema name="administrativo"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Eschema adminisatitrativo pizzaria]]></comment>
+	<position x="80" y="103"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="endereco" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="razao_social" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="nome_fantasia" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<column name="telefone" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<constraint name="loja_pk" type="pk-constr" table="administrativo.loja">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<schema name="veiculo" rect-visible="true" fill-color="#5555ff">
+	<role name="postgres"/>
+	<comment><![CDATA[Eschema veiculo loja]]></comment>
+</schema>
+
+<table name="veiculo">
+	<schema name="veiculo"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Eschema carro loja]]></comment>
+	<position x="460" y="180"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="modelo" not-null="true">
+		<type name="integer" length="100"/>
+	</column>
+	<column name="estoque" not-null="true">
+		<type name="numeric" length="100"/>
+	</column>
+	<column name="placa" not-null="true">
+		<type name="numeric" length="100" precision="0"/>
+	</column>
+	<column name="preco" not-null="true">
+		<type name="numeric" length="100" precision="2"/>
+	</column>
+	<constraint name="Carro_pk" type="pk-constr" table="veiculo.veiculo">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="modelo">
+	<schema name="veiculo"/>
+	<role name="postgres"/>
+	<position x="880" y="183"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<constraint name="modelo_pk" type="pk-constr" table="veiculo.modelo">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="marca">
+	<schema name="veiculo"/>
+	<role name="postgres"/>
+	<position x="1000" y="383"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="100"/>
+	</column>
+	<constraint name="marca_pk" type="pk-constr" table="veiculo.marca">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="estoque">
+	<schema name="veiculo"/>
+	<role name="postgres"/>
+	<position x="560" y="523"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+	</column>
+	<column name="quantidade" not-null="true">
+		<type name="numeric" length="100"/>
+	</column>
+	<constraint name="estoque_pk" type="pk-constr" table="veiculo.estoque">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="fk_veiculo_modelo" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="veiculo.modelo" table="veiculo.veiculo">
+	<columns names="modelo" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_veiculo_estoque" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="veiculo.estoque" table="veiculo.veiculo">
+	<columns names="id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<constraint name="fk_modelo_marca" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="veiculo.marca" table="veiculo.modelo">
+	<columns names="id" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+</constraint>
+
+<relationship name="rel_veiculo_modelo" type="relfk"
+	 src-table="veiculo.veiculo"
+	 dst-table="veiculo.modelo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_modelo_marca" type="relfk"
+	 src-table="veiculo.modelo"
+	 dst-table="veiculo.marca"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_veiculo_estoque" type="relfk"
+	 src-table="veiculo.veiculo"
+	 dst-table="veiculo.estoque"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>

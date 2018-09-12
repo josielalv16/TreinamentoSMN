@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.9.0" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="new_database">
+</database>
+
+<schema name="public" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="administrativo" rect-visible="true" fill-color="#0055ff">
+	<role name="postgres"/>
+	<comment><![CDATA[esquema do administrativo]]></comment>
+</schema>
+
+<table name="loja">
+	<schema name="administrativo"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabela da loja do sistema]]></comment>
+	<position x="60" y="83"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+		<comment><![CDATA[Chave da tabela]]></comment>
+	</column>
+	<column name="nome_fantasia" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[Nome fantasia da loja]]></comment>
+	</column>
+	<column name="razao_social" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[Razão social da loja]]></comment>
+	</column>
+	<column name="endereco" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[Endereco da loja]]></comment>
+	</column>
+	<column name="telefone" not-null="true">
+		<type name="varchar" length="14"/>
+		<comment><![CDATA[Telefone da loja]]></comment>
+	</column>
+	<constraint name="loja_pk" type="pk-constr" table="administrativo.loja">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<schema name="fabrica" rect-visible="true" fill-color="#ff0000">
+	<role name="postgres"/>
+</schema>
+
+<table name="marca">
+	<schema name="fabrica"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Marca do veiculo]]></comment>
+	<position x="400" y="83"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+		<comment><![CDATA[Chave da marca]]></comment>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[Nome da marca]]></comment>
+	</column>
+	<constraint name="marca_pk" type="pk-constr" table="fabrica.marca">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="modelo">
+	<schema name="fabrica"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabela modelo do veiculo]]></comment>
+	<position x="820" y="140"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+		<comment><![CDATA[Chave do modelo]]></comment>
+	</column>
+	<column name="nome" not-null="true">
+		<type name="varchar" length="100"/>
+		<comment><![CDATA[Nome do modelo]]></comment>
+	</column>
+	<column name="idmarca" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Chave da marca]]></comment>
+	</column>
+	<constraint name="modelo_pk" type="pk-constr" table="fabrica.modelo">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="estoque">
+	<schema name="fabrica"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Estoque do modelo]]></comment>
+	<position x="800" y="380"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="100"/>
+		<comment><![CDATA[Chave do estoque]]></comment>
+	</column>
+	<column name="quantidade" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Quantidade do modelo]]></comment>
+	</column>
+	<column name="idveiculo" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Chave veiculo]]></comment>
+	</column>
+	<constraint name="estoque_pk" type="pk-constr" table="fabrica.estoque">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="veiculo">
+	<schema name="fabrica"/>
+	<role name="postgres"/>
+	<comment><![CDATA[Tabela veiculo]]></comment>
+	<position x="380" y="340"/>
+	<column name="id" not-null="true">
+		<type name="serial" length="0"/>
+		<comment><![CDATA[Chave do veiculo]]></comment>
+	</column>
+	<column name="placa">
+		<type name="varchar" length="10"/>
+		<comment><![CDATA[Placa do veiculo]]></comment>
+	</column>
+	<column name="renavam">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Renavam do veiculo]]></comment>
+	</column>
+	<column name="chassi" not-null="true">
+		<type name="varchar" length="50"/>
+		<comment><![CDATA[Chassi do veiculo]]></comment>
+	</column>
+	<column name="ano_fabricacao" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Ano de fabricação veiculo]]></comment>
+	</column>
+	<column name="ano_modelo" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Ano do modelo do veiculo]]></comment>
+	</column>
+	<column name="cor" not-null="true">
+		<type name="varchar" length="20"/>
+		<comment><![CDATA[Cor do veiculo]]></comment>
+	</column>
+	<column name="idmodelo" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Chave mode]]></comment>
+	</column>
+	<column name="idloja" not-null="true">
+		<type name="integer" length="0"/>
+		<comment><![CDATA[Chave da loja]]></comment>
+	</column>
+	<constraint name="veiculo_pk" type="pk-constr" table="fabrica.veiculo">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<constraint name="fk_modelo_marca" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fabrica.marca" table="fabrica.modelo">
+	<columns names="idmarca" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+		<comment><![CDATA[Chave estrangeira por marca]]></comment>
+</constraint>
+
+<constraint name="fk_estoque_veiculo" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fabrica.veiculo" table="fabrica.estoque">
+	<columns names="idveiculo" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+		<comment><![CDATA[Chave estrangeira por estoque]]></comment>
+</constraint>
+
+<constraint name="fk_veiculo_modelo" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="fabrica.modelo" table="fabrica.veiculo">
+	<columns names="idmodelo" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+		<comment><![CDATA[Chave estrangeira por modelo]]></comment>
+</constraint>
+
+<constraint name="fk_veiculo_loja" type="fk-constr" comparison-type="MATCH FULL"
+	 upd-action="NO ACTION" del-action="NO ACTION" ref-table="administrativo.loja" table="fabrica.veiculo">
+	<columns names="idloja" ref-type="src-columns"/>
+	<columns names="id" ref-type="dst-columns"/>
+		<comment><![CDATA[Chave estrangeira por loja]]></comment>
+</constraint>
+
+<relationship name="rel_veiculo_modelo" type="relfk"
+	 src-table="fabrica.veiculo"
+	 dst-table="fabrica.modelo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_modelo_marca" type="relfk"
+	 src-table="fabrica.modelo"
+	 dst-table="fabrica.marca"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_estoque_veiculo" type="relfk"
+	 src-table="fabrica.estoque"
+	 dst-table="fabrica.veiculo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="rel_veiculo_loja" type="relfk"
+	 src-table="fabrica.veiculo"
+	 dst-table="administrativo.loja"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
