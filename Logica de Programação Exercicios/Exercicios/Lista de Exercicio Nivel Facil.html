@@ -1,0 +1,319 @@
+<!-- Lista de exercicios nivel facil -->
+
+<script>
+    //Exercicio 1
+    // var valor = 0;
+    // var macas = prompt("Numero de macas: ");
+    // if(macas < 12){
+    //     valor = macas * 0.30;
+    // }else{
+    //     valor = macas * 0.25;
+    // }
+
+    // console.log("Valor a pagar", valor);
+
+    //Exercicio 2
+    // var ano = prompt("Digite o ano de nascimento:");
+    // if(2018 - ano >= 18){
+    //     console.log("Você poderá votar este ano");
+    // }else{
+    //     console.log("Você não poderá votar este ano");
+    // }
+
+    //Exercicio 3
+    // var nota1 = parseInt(prompt("Digite a primeira nota"));
+    // var nota2 = parseInt(prompt("Digite a segunda nota"));
+    // var nota3 = parseInt(prompt("Digite a terceira nota"));
+    // var media = (nota1 + nota2 + nota3) / 3;
+    // if(media >= 6){
+    //     console.log("Você foi aprovado");
+    // }else{
+    //     console.log("Você foi reprovado");
+    // }
+    // console.log(media);
+
+    //Exercicio 4
+    // var valorO = parseFloat(prompt("Digite o valor para converter"));
+    // var moedaO = parseInt(prompt("Informe a moeda de origem: \n1 - dolar americano \n2 - euro \n3 - iene japones\n 4 - libra esterlina\n 5 - peso argentino"));
+    // var moedaC = parseInt(prompt("Informe a moeda que deseja fazer a conversao: \n1 - dolar americano \n2 - euro \n3 - iene japones\n 4 - libra esterlina\n 5 - peso argentino"));
+    // var valorC = 0;
+
+    // if(moedaO == 1){
+    //     switch(moedaC){
+    //         case 1:
+    //             valorC = valorO * 1;
+    //             break;
+    //         case 2:
+    //             valorC = valorO * 0.86;
+    //             break;
+    //         case 3:
+    //             valorC = valorO * 111.11;
+    //             break;
+    //         case 4:
+    //             valorC = valorO * 0.78;
+    //             break;
+    //         case 5:
+    //             valorC = valorO * 30.95;
+    //             break;
+    //         default:
+    //             valorC = 0;
+    //             break;
+    //     }
+    // }
+    // else if(moedaO == 2){
+    //     switch(moedaC){
+    //         case 1:
+    //             valorC = valorO * 1.17;
+    //             break;
+    //         case 2:
+    //             valorC = valorO * 1;
+    //             break;
+    //         case 3:
+    //             valorC = valorO * 129.73;
+    //             break;
+    //         case 4:
+    //             valorC = valorO * 0.91;
+    //             break;
+    //         case 5:
+    //             valorC = valorO * 36,14;
+    //             break;
+    //         default:
+    //             valorC = 0;
+    //             break;
+    //     }
+    // }
+    // else if(moedaO == 3){
+    //     switch(moedaC){
+    //         case 1:
+    //             valorC = valorO * 0.0090;
+    //             break;
+    //         case 2:
+    //             valorC = valorO * 0.0077;
+    //             break;
+    //         case 3:
+    //             valorC = valorO * 1;
+    //             break;
+    //         case 4:
+    //             valorC = valorO * 0.0070;
+    //             break;
+    //         case 5:
+    //             valorC = valorO * 0.28;
+    //             break;
+    //         default:
+    //             valorC = 0;
+    //             break;
+    //     }
+    // }
+    // else if(moedaO == 4){
+    //     switch(moedaC){
+    //         case 1:
+    //             valorC = valorO * 1.29;
+    //             break;
+    //         case 2:
+    //             valorC = valorO * 1.10;
+    //             break;
+    //         case 3:
+    //             valorC = valorO * 143.25;
+    //             break;
+    //         case 4:
+    //             valorC = valorO * 1;
+    //             break;
+    //         case 5:
+    //             valorC = valorO * 39.90;
+    //             break;
+    //         default:
+    //             valorC = 0;
+    //             break;
+    //     }
+    // }
+    // else if(moedaO == 5){
+    //     switch(moedaC){
+    //         case 1:
+    //             valorC = valorO * 0.032;
+    //             break;
+    //         case 2:
+    //             valorC = valorO * 0.028;
+    //             break;
+    //         case 3:
+    //             valorC = valorO * 3.59;
+    //             break;
+    //         case 4:
+    //             valorC = valorO * 0.025;
+    //             break;
+    //         case 5:
+    //             valorC = valorO * 1;
+    //             break;
+    //         default:
+    //             valorC = 0;
+    //             break;
+    //     }
+    // }
+    // console.log(valorC);
+
+    //Exercicio 5
+    // var vetor = [];
+    // var i = 0;
+    // var aux = 0;
+    // do{
+    //     aux = parseInt(prompt("Digite um numero (0 para sair)"));
+    //     if(aux != 0){
+    //         vetor[i] = aux;
+    //     }
+    //     i++;
+    // }while(aux != 0);
+
+    // var menor = 0;
+    // var maior = 0;
+    // for (var j = 0; j < vetor.length; j++){
+    //     if(menor == 0){
+    //         menor = vetor[i];
+    //     }
+    //     if(menor > vetor[j] && vetor[j] != 0){
+    //         menor = vetor[j];
+    //     }
+    //     if(maior < vetor[j]){
+    //         maior = vetor[j];
+    //     }
+    // }
+    // console.log(menor);
+    // console.log(maior);
+
+    //Exercicio 6
+    // var numero = parseInt(prompt("Numero:"));
+    // var aux = numero;
+    // var nAnterior = --numero;
+    // var nProximo = ++aux;
+    // console.log("Antecessor: ", nAnterior);
+    // console.log("Sucessor: ", nProximo);
+    
+    //Exercicio 7
+    // var emprestimo = parseInt(prompt("Emprestimo: "));
+    // var taxa = parseInt(prompt("Taxa: "));
+    // var meses = parseInt(prompt("Meses: "));
+    // var juros = emprestimo * taxa * meses;
+    // console.log("Juros: ", juros);
+
+    //Exercicio 8
+    // var numero = parseInt(prompt("Numero: "));
+    // var soma = 0;
+    // for(var i = 0; i <= numero; i++){
+    //     soma += i;
+    // }
+    // console.log("Soma: ", soma);
+
+    //Exercicio 9
+    // var numero = parseInt(prompt("Numero: "));
+    // console.log("Contagem regressiva:");
+    // for(var i = numero; i >= 0; i--){
+    //     console.log(i);
+    // }
+    // console.log("Acabou o Tempo");
+
+    //Exercicio 10
+    // var numero = parseInt(prompt("Numero: "));
+    // var aux = 1;
+    // if(numero % 2 == 0 && numero != 2){
+    //     aux = 0;
+    // }
+    // if(numero % 3 == 0 && numero != 3){
+    //     aux = 0;
+    // }
+    // if(numero % 5 == 0 && numero != 5){
+    //     aux = 0;
+    // }
+    // if(numero % 7 == 0 && numero != 7){
+    //     aux = 0;
+    // }
+    
+    // if(aux == 1 && numero != 1){
+    //     console.log("numero primo");
+    // }else{
+    //     console.log("nao primo");
+    // }
+
+    //Exercicio 11
+    // var numero = parseInt(prompt("Numero:"));
+    // var fatorial = 1;
+    // for(var i = numero; i > 0; i--){
+    //     fatorial *= i;
+    // }
+    // console.log(fatorial);
+
+    //Exercicio 12 
+    // var numero = parseInt(prompt("Numero:"));
+    // var n1 = 1;
+    // var n2 = 1;
+    // var soma = 0;
+    // console.log("1");
+    // console.log("1");
+    // while(soma < numero){
+    //     soma = n1 + n2;
+    //     n1 = n2;
+    //     n2 = soma;
+    //     if(soma <= numero){
+    //         console.log(soma);
+    //     }
+    // }
+
+    //Exercicio 13 ************************
+    // var texto = prompt("Texto");
+    // textoR = texto.split('').reverse().join('');
+    // console.log(textoR);
+
+    //Exercicio 14
+    // var numeros = [];
+    // var i = 0;
+    // do{
+    //     var n = parseInt(prompt("Numero: (-1 para sair)"));
+    //     if(n != -1){
+    //         numeros[i] = n;
+    //         i++;
+    //     }
+    // }while(n != -1);
+
+    // var qtdP = 0;
+    // var qtdI = 0;
+    // for(var j = 0; j < numeros.length; j++){
+    //     if(numeros[j] % 2 == 0){
+    //         qtdP++;
+    //     }else{
+    //         qtdI++;
+    //     }
+    // }
+
+    // console.log("Qtd Par ", qtdP);
+    // console.log("Qtd Impar ", qtdI);
+
+    //Exercicio 15
+    var contador = 1;
+    var matriz1 = [];
+    for(var i = 0; i < 5; i++){
+        matriz1[i] = [];
+        for(var j = 0; j < 5; j++){
+            matriz1[i][j] = contador;
+            contador++;
+        }
+    }
+
+    contador = 2;
+    var matriz2 = [];
+    for(var i = 0; i < 5; i++){
+        matriz2[i] = [];
+        for(var j = 0; j < 5; j++){
+            matriz2[i][j] = contador;
+            contador++;
+        }
+    }
+
+    var matrizSoma = [];
+    for(var i = 0; i < 5; i++){
+        matrizSoma[i] = [];
+        for(var j = 0; j < 5; j++){
+            matrizSoma[i][j] = matriz1[i][j] + matriz2[i][j];
+        }
+    }
+
+    console.log(matriz1);
+    console.log(matriz2);
+    console.log(matrizSoma);
+</script>

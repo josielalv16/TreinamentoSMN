@@ -1,0 +1,80 @@
+<script>
+//Exercicio 1
+// var n1 = parseInt(prompt("Numero 1"));
+// var n2 = parseInt(prompt("Numero 2"));
+
+// var resto = 0, num1 = n1, num2 = n2;
+// do{
+//     resto = num1 % num2;
+//     num1 = num2;
+//     num2 = resto;
+// }while(resto != 0);
+
+// console.log("Maximo Divisor Comum: ", num1);
+
+// var mmc = (n1 * n2) / num1;
+// console.log("Minimo Multiplo Comum: ", mmc);
+
+
+//Exercicio 2
+// var numeros = [];
+// var i = 0;
+// do{
+//     var n = parseInt(prompt("Numero: (-1 para sair)"));
+//     if(n != -1){
+//         numeros[i] = n;
+//         i++;
+//     }
+// }while(n != -1);
+
+// var repetidos = [];
+// var aux = 1, aux2 = 0;
+// var novo = [];
+// for(var i = 0; i < numeros.length; i++){
+//     novo[i] = numeros[i];
+//     for(var j = aux; j < numeros.length; j++){
+//         if(numeros[i] == numeros[j]){
+//             repetidos[aux2] = numeros[i];
+//             aux2++;
+//         }
+//     }
+//     aux++;
+// }
+
+// if(aux2 != 0){
+//     for(var i = 0; i < repetidos.length; i++){
+//         var n = novo.indexOf(repetidos[i]);
+//         novo.splice(n, 1);
+//     }
+
+//     console.log("Original: ", numeros);
+//     console.log("Repetidos: ", repetidos);
+//     console.log("Novo sem repetição: ", novo);
+// }else{
+//     console.log("Não possui valores repetidos");
+// }
+
+//Exercicio 5
+// var graos = 1;
+// for(i = 2; i <= 64; i++){
+//     graos *= 2;
+// }
+
+// console.log(graos);
+
+// var n = parseInt(prompt("Numero de termos"));
+// var a1 = parseInt(prompt("Primeiro termo"));
+// var r = parseInt(prompt("Razao da progressao"));
+
+// var progressao = [a1];
+// var soma = a1;
+// for(var i = 1; i < n; i++){
+//     a1 = a1 + r;
+//     soma += a1;
+//     progressao.push(a1)
+// }
+// console.log("Termos ", progressao);
+// console.log("Soma: ", soma);
+
+
+</script>
