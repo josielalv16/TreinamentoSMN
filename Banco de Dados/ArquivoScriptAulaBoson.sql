@@ -707,3 +707,124 @@ go
 --After - O codigo presente no trigger é executado apos todas as ações terem sido completadas na tabela especificada
 
 --Instead Of - O codigo presente no trigger é executado no lugar da operação que causou seu disparo.
+--Fluxo de Transações
+--1 - Verificação de IDENTITY INSERT
+--2 - Restrição (Constraint) de Nulos (Null)
+--3 - Checagem de tipos de dados
+--4 - Execução de trigger INSTEAD OF(a execução do DML para aqui; esse trigger não é recursivo)
+--5 - Restrição de Chave Primaria
+--6 - Restrição "Check"
+--7 - Restrição de Chave Estrangeira
+--8 - Execução do DML e atualizaçao do log de transações
+--9 - Execução do trigger AFTER
+--10 - Commit da Transação (Confirmação)
+
+--AFTER = O trigger é disparado quando todas as operaçoes especificadas nas declarações SQL tiverem sido executadas com sucesso
+--INSTEAD OF = o trigger é disparado no lugar das declarações SQL
+
+use db_Biblioteca
+go
+CREATE TRIGGER teste_trigger_after
+ON tbl_editoras
+AFTER INSERT 
+AS
+PRINT 'Olá Mundo!';
+
+INSERT INTO tbl_editoras VALUES ('Editora10')
+
+go
+CREATE TRIGGER trigger_after
+ON tbl_editoras
+AFTER INSERT
+AS
+INSERT INTO tbl_autores VALUES(25, 'José', 'da Silva')
+INSERT INTO tbl_Livro VALUES('Livro1', '123456000', '20001010', 77, 25, 2)
+
+-- Excluir trigger
+DROP TRIGGER teste_trigger_after
+
+INSERT INTO tbl_editoras VALUES ('Editora11')
+
+GO
+CREATE TRIGGER teste_trigger_insteadof
+ON tbl_autores
+INSTEAD OF INSERT
+AS
+PRINT 'Olá de novo! Não inseri o registro desta vez!';
+
+INSERT INTO tbl_autores VALUES (26, 'João', 'Moura')
+select * from tbl_autores
+
+--Habilitar e Desabilitar Triggers
+ALTER TABLE tbl_editoras
+DISABLE TRIGGER trigger_after
+
+ALTER TABLE tbl_editoras
+ENABLE TRIGGER trigger_after
+
+-- Verificar a existencia de triggers na tabela
+EXEC sp_helptrigger @tabname = tbl_editoras
+ 
+-- Verificar a existencia de triggers no banco de dados
+USE db_Biblioteca SELECT * FROM sys.triggers WHERE is_disabled = 0 OR is_disabled = 1
+USE db_Biblioteca SELECT * FROM sys.triggers WHERE is_disabled = 0
+
+GO
+--Determinando as colunas atualizadas
+CREATE TRIGGER trigger_after_autores
+ON tbl_autores
+AFTER INSERT, UPDATE
+AS
+IF UPDATE(nome_autor)
+	BEGIN
+		PRINT 'O nome do autor foi alterado'
+	END
+ELSE
+	BEGIN
+		PRINT 'Nome não foi modificado'
+	END
+
+UPDATE tbl_autores SET Nome_Autor = 'João' WHERE ID_Autor = 25
+UPDATE tbl_autores SET Sobrenome_Autor = 'Guimarães' WHERE ID_Autor = 25
+select * from tbl_autores
+
+-- Aninhamento de Triggers DML
+-- Trigger disparando outro trigger
+-- Para isso, a opção de servidor "Permitir que Gatilhos disparem outros gatilhos", em 
+--Propriedades do Servidor > Avançado, deve estar configurada como True(é o padrão)
+
+-- Triggers Recursivos
+-- Um gatilho recursivo é um tipo especial de trigger AFTER aninhado.
+-- O trigger recursivo ocorre quando um trigger executa uma declaração DML que o dispara novamente.
+-- Podemos habilitar ou desabilitar os triggers recursivos com o comando ALTER DATABASE:
+-- ALTER DATABASE nome_DB SET RECURSIVE_TRIGGERS ON | OFF
+
+ALTER DATABASE db_Biblioteca
+SET RECURSIVE_TRIGGERS ON
+
+CREATE TABLE tbl_trigger_recursivo(codigo INT PRIMARY KEY)
+
+SELECT codigo from tbl_trigger_recursivo
+
+go
+
+CREATE TRIGGER trigger_rec ON tbl_trigger_recursivo
+AFTER INSERT
+AS
+DECLARE @cod INT
+SELECT
+@cod = MAX(codigo)
+FROM tbl_trigger_recursivo
+IF @cod < 10
+	BEGIN
+		INSERT INTO tbl_trigger_recursivo 
+		SELECT MAX(codigo) + 1 FROM tbl_trigger_recursivo
+	END
+ELSE
+	BEGIN
+		PRINT 'Trigger Recursivo Finalizado'
+	END
+
+SELECT Codigo from tbl_trigger_recursivo
+INSERT INTO tbl_trigger_recursivo VALUES(1)
+
