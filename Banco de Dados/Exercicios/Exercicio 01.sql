@@ -1,4 +1,3 @@
-
 DECLARE @idChocolate SMALLINT
 
 SELECT @idChocolate = IdTipoProduto FROM TipoProduto WHERE NomeTipoProduto = 'Chocolate'
