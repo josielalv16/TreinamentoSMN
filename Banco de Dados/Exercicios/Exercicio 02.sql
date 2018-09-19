@@ -10,4 +10,5 @@ SELECT P.NomeProduto, M.NomeMarca, TP.NomeTipoProduto, C.NomeCliente, V.DataVend
 	ON VI.IdVenda = V.IdVenda
 	INNER JOIN Cliente AS C
 	ON V.IdCliente = C.IdCliente
-	WHERE V.DataPagamento BETWEEN '20180101' AND '20180131'
+	WHERE (DATEPART(YY, V.DataPagamento) = 2018
+		AND DATEPART(MM, V.DataPagamento) = 01)
