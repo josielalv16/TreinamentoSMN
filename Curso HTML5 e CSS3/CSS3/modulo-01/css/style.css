@@ -29,7 +29,88 @@ input[type="submit"]{width: 50px; background-color: green; height: 35px; border:
 #exemplo2 {background-color: red; color: #fff; width: 500px; margin-top: 20px; margin-left: 20px; margin-right: 20px; margin-bottom: 20px;}
 #exemplo2 {background-color: red; color: #fff; width: 500px; margin: 20px 20px 20px 20px;} */
 
-p{color: red; text-transform: capitalize;}
-h1{text-align: left; text-decoration: underline;}
+/* 
+AULA 08 E 09
+p{color: red; text-align: justify; text-indent: 20px; line-height: 25px; direction: ltr; letter-spacing: 2px; word-spacing: -4px; text-transform: capitalize;}
+h1{text-align: left; text-decoration: underline; text-shadow: 1px 3px red;}
 h2{text-align: right; text-decoration: overline;}
-h3{text-align: center; text-decoration: line-through;}
+h3{text-align: center; text-decoration: line-through;} */
+
+/* AULA 10
+*{box-sizing: border-box;}
+#conteudo{ background-color: red; width: 300px; padding: 20px; box-shadow: 10px 10px 5px green;} */
+
+/* AULA 11
+ #conteudo {background-color: red; width: 300px; height: 50px; overflow: auto;}
+#conteudo p{opacity: 0.5;} */
+
+/* AULA 12
+#bloco{background-color: green; width: 300px; height: 150px; border-radius: 20px 50px 100px 200px;}
+#bloco{background-color: green; width: 300px; height: 150px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px;} */
+
+/* 
+AULA 13 e 14
+*{font-size: 100%;}
+@font-face{
+    font-family: open_sans;
+    src: url(opensans-regular-webfont.woff);
+}
+p{font-family: open_sans; font-variant: small-caps; font-weight: bold; font-style: italic; font-size: 2.5em;} 
+p{font-family: 'Chicle', cursive; font-size: 1.2em;} */
+
+/* AULA 17
+#cores{width: 200px; height: 200px; background-color: rgba(230, 89, 225, 0.5);}
+#cores{width: 200px; height: 200px; background-color: hsla(20, 100%, 59%, 0.8);}
+#cores{width: 200px; height: 200px; background: linear-gradient(to right, red, blue, green);}
+#cores{width: 200px; height: 200px; background: linear-gradient(45deg, rgba(255,0,0,0), blue, green);}
+#cores{width: 200px; height: 200px; background: radial-gradient(red, green);} */
+
+/* AULA 18
+#base{background-color: green; width: 600px; height: 600px;}
+#esquerda{background-color: red; width: 300px; height: 300px; float: left;}
+#direita{background-color: blue; width: 300px; height: 300px; float: right;} */
+
+/* AULA 19
+#conteudo{width: 600px; height: 1200px; background-color: red; position: relative;}
+#texto{width: 500px; background-color: green; position: absolute; left: 0; top: 40px;}
+#texto{width: 500px; background-color: green; position: fixed; left: 20px; top: 0px;} */
+
+/* AULA 20
+#exemplo{border-style: dotted;}
+#exemplo{border-style: dashed;}
+#exemplo{border-style: double;}
+#exemplo{border-style: groove;}
+#exemplo{border-style: ridge;}
+#exemplo{border-style: inset;}
+#exemplo{border-style: outset;}
+#exemplo{border-style: solid;}
+#exemplo{border-style: solid; border-width: 5px; border-color: red;}
+#exemplo{border: solid 5px red;}
+#exemplo{border-bottom: solid 5px red; outline: dotted 5px green;} */
+
+/* AULA 21
+#exemplo{width: 200px; height: 200px; background-color: red; transition-property: width; transition-duration: 2s; transition-timing-function: linear;}
+#exemplo{width: 200px; height: 200px; background-color: red; transition: width 2s linear 1s, height 2s linear;}
+#exemplo{width: 200px; height: 200px; background-color: red; transition: all 2s linear;}
+#exemplo:hover{width: 350px; height: 350px; background-color: green;} */
+
+/* body{background-color: red;}
+body{background-image: url(../img/bg.jpg); background-repeat: no-repeat; background-position: left top; background-attachment: fixed; background-size: 100% 100%;}
+body{background: url(../img/bg.jpg) center center/100% 100% no-repeat fixed;} */
+
+/* AULA 29
+ *{margin: 0; padding: 0;}
+nav{width: 100vw; height: 80px; background-color: blue;}
+.banner{width: 100vw; height: calc(100vh - 80px); background-color: red;} */
+
+img{margin: 40px 0 0 60px; filter: blur(4px);}
+img{margin: 40px 0 0 60px; filter: brightness(20%);}
+img{margin: 40px 0 0 60px; filter: contrast(150%);}
+img{margin: 40px 0 0 60px; filter: grayscale(50%);}
+img{margin: 40px 0 0 60px; filter: invert(80%);}
+img{margin: 40px 0 0 60px; filter: opacity(60%);}
+img{margin: 40px 0 0 60px; filter: saturate(180%);}
+img{margin: 40px 0 0 60px; filter: sepia(100%);}
+img{margin: 40px 0 0 60px; filter: hue-rotate(50deg);}
+img{margin: 40px 0 0 60px; filter: drop-shadow(10px 20px 5px #000);}
+img{margin: 40px 0 0 60px; filter: drop-shadow(10px 20px 5px #000) contrast(150%);}
