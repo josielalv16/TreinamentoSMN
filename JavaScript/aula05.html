@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>JavaScript Aula05</title>
+        <style type="text/css">
+            body{ background-color: #000;}
+            #xti { display: block; margin: 20px auto;}
+        </style>
+        <script type="text/javascript">
+            function ligar(){
+                var nome = "jos'iel";
+                var nome = "jos\"iel"; //string
+                var nome = "jos\\iel";
+                var nome = "josiel\nalves";
+                var nome = "josiel\n \u7231";
+                var nome1; //undefined
+                nome1 = null; // null
+                nome1 = 3 * "pessoas"; //NaN - não é numero
+                nome1 = 1.7976931348623157e+308; //maximo representado pelo javascript
+                nome1 = 1.7976931348623157e+309; //infinito
+
+                const HORAS_DO_DIA = 24; //Constante, variavel que não varia
+                
+                alert(nome1);
+                document.getElementById("xti").src = "img/lampada_on.png";
+            }
+        </script>
+    </head>
+    <body>
+        <img id="xti" onclick="ligar();" src="img/lampada_off.png">
+    </body>
+</html>
