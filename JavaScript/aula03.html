@@ -3,17 +3,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>JavaScript Aula03</title>
+        <script type="text/javascript" src="js/cookie.js"></script>
+        <script type="text/javascript" src="js/aula3.js"></script>
         <style type="text/css">
-            body{ background-color: #000;}
+            body{ background-color: #000; color: white; text-align: center;}
             #xti { display: block; margin: 20px auto;}
         </style>
-        <script type="text/javascript">
-            function ligar(){
-                document.getElementById("xti").src = "img/lampada_on.png";
-            }
-        </script>
     </head>
     <body>
-        <img id="xti" onclick="ligar();" src="img/lampada_off.png">
+        <img id="xti" src="img/lampada_off.png">
+
+        <div id="horas">00:00:00</div>
     </body>
 </html>

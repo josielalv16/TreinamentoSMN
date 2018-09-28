@@ -8,6 +8,26 @@
 
 window.onload = function(){
     carregarPoltronas();
+    
+    var imagens = document.getElementsByTagName("img");
+    for(var i = 0; i < imagens.length; i++){
+        imagens[i].onclick = verificarStatus(i);
+    }
+}
+
+function verificarStatus(poltrona){
+    return function() {
+        var src = document.getElementsByTagName("img")[poltrona].src
+        var msg = "";
+        if(src.indexOf("ball_disponivel.jpg") > 0){
+            msg = "Poltrona Disponivel";
+        }else if(src.indexOf("ball_indisponivel.jpg") > 0){
+            msg = "Poltrona Indisponivel";
+        }else{
+            msg = "Esta poltrona é Sua!!!";
+        }
+        alert(msg);
+    }
 }
 
 var poltronas = [false, true, false, true, true, true, false, true, false];
